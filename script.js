@@ -72,7 +72,7 @@ const displayMovements = function (movements) {
       <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-      <div class="movements__value">${mov}</div>
+      <div class="movements__value">${mov}€</div>
     </div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -83,10 +83,38 @@ displayMovements(account1.movements);
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance}€`;
 };
 calcDisplayBalance(account1.movements);
 // calc and display balance
+
+const calcDisplaySummary = function (movements) {
+  const income = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+
+  labelSumIn.textContent = `${income}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      // New feature: If interest at least 1 EUR
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
+// calc and display summary
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -374,3 +402,22 @@ GOOD LUCK 😀
 // console.log(`--- DATA: 2 ---`);
 // const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 // console.log('# AVG 2: ', avg2);
+
+///////////////////////////////////////
+// Chaining methods
+
+// const eurToUsd = 1.1;
+
+// const movements = [...account1.movements];
+// console.log(movements);
+
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0) // returns new array
+//   .map(mov => mov * eurToUsd) // returns new array
+//   // .map((mov, i, arr) => {
+//   //   console.log(arr);
+//   //   return mov * eurToUsd;
+//   // })
+//   .reduce((acc, cur) => acc + cur, 0); // returns value
+
+// console.log(totalDepositsUSD);
