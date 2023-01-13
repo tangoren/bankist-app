@@ -33,7 +33,14 @@ const account4 = {
   pin: 4444,
 };
 
-const accounts = [account1, account2, account3, account4];
+const account5 = {
+  owner: 'Osman Tangoren',
+  movements: [240, 760, 1100, -500, 20, -60, 750, 7000, -2500, 110],
+  interestRate: 1.8,
+  pin: 5555,
+};
+
+const accounts = [account1, account2, account3, account4, account5];
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
@@ -69,41 +76,39 @@ const displayMovements = function (movements) {
 
     const html = `
     <div class="movements__row">
-      <div class="movements__type movements__type--${type}">${
+      <div class="movements__type movements__type--${type}">#${
       i + 1
-    } ${type}</div>
+    } &rarr; ${type}</div>
       <div class="movements__value">${mov}€</div>
     </div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
 // display movements
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1.movements);
 // calc and display balance
 
-const calcDisplaySummary = function (movements) {
-  const income = movements
+const calcDisplaySummary = function (acc) {
+  const income = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
 
   labelSumIn.textContent = `${income}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
 
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       // New feature: If interest at least 1 EUR
       // console.log(arr);
@@ -113,7 +118,6 @@ const calcDisplaySummary = function (movements) {
 
   labelSumInterest.textContent = `${interest}€`;
 };
-calcDisplaySummary(account1.movements);
 // calc and display summary
 
 const createUsernames = function (accs) {
@@ -127,6 +131,46 @@ const createUsernames = function (accs) {
 };
 createUsernames(accounts);
 // create usernames
+
+// event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  // console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner
+      .split(' ')
+      .at(0)}!`;
+
+    containerApp.style.opacity = 1;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+
+    inputLoginUsername.blur();
+    inputLoginPin.blur();
+
+    console.log(currentAccount.owner, currentAccount.interestRate);
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcDisplaySummary(currentAccount);
+  }
+});
+// login feature
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -447,3 +491,26 @@ GOOD LUCK 😀
 
 // console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 // console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+///////////////////////////////////////
+// Find method
+
+// const movements = [...account1.movements];
+
+// // Find method does not mutate an array => Based on a condition returns only ONE element
+
+// const firstWithdrawal = movements.find(mov => mov < 0);
+
+// console.log(movements);
+// console.log(firstWithdrawal);
+
+// console.log(accounts);
+
+// const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(account);
+
+// const accountFor = [];
+// for (const acc of accounts) {
+//   if (acc.owner === 'Jessica Davis') accountFor.push(acc);
+// }
+// console.log(accountFor);
