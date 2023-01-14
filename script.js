@@ -608,3 +608,23 @@ GOOD LUCK 😀
 
 // const anyDeposit = movements.some(mov => mov > 0);
 // console.log('Any deposit:', anyDeposit);
+
+// ///////////////////////////////////////
+// // every method
+
+// console.log(
+//   'Every:',
+//   movements.every(mov => mov > 0)
+// );
+
+// // Account 4 only has deposits, thats why this returns true
+// console.log(
+//   'Every:',
+//   account4.movements.every(mov => mov > 0)
+// );
+
+// // seperate callback
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
