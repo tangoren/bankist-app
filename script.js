@@ -628,3 +628,28 @@ GOOD LUCK 😀
 // console.log(movements.some(deposit));
 // console.log(movements.every(deposit));
 // console.log(movements.filter(deposit));
+
+///////////////////////////////////////
+// flat and flatMap method
+
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
+
+// // flat method depth
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
+
+// // flat
+// const overBalance = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov, 0);
+
+// console.log('flat:', overBalance);
+
+// // flatMap
+// const overBalance2 = accounts
+//   .flatMap(acc => acc.movements) // map and flat method together
+//   .reduce((acc, mov) => acc + mov, 0);
+
+// console.log('flatmap:', overBalance2);
