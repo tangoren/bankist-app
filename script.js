@@ -205,6 +205,24 @@ btnTransfer.addEventListener('click', function (e) {
 });
 // transfer money feature
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+  inputLoanAmount.blur();
+});
+// loan money feature
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -571,3 +589,22 @@ GOOD LUCK 😀
 //   if (acc.owner === 'Jessica Davis') accountFor.push(acc);
 // }
 // console.log(accountFor);
+
+///////////////////////////////////////
+// some method
+
+// const movements = [...account1.movements];
+
+// console.log(movements);
+
+// // EQUALITY
+// console.log('Includes:', movements.includes(-130));
+
+// // CONDITION
+// console.log(
+//   'Some:',
+//   movements.some(mov => mov === -130)
+// );
+
+// const anyDeposit = movements.some(mov => mov > 0);
+// console.log('Any deposit:', anyDeposit);
