@@ -747,3 +747,103 @@ GOOD LUCK 😀
 //   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 //   console.log(movementsUI2);
 // });
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// WHICH ARRAY METHOD TO USE
+
+/* ### TO MUTATE THE ORIGINAL ARRAY ###
+
+👉 Add to original:
+
+.push - (end)
+.unshift - (start)
+
+👉 Remove from original:
+
+.pop - end
+.shift - start
+.splice - any
+
+👉 Others:
+
+.reverse
+.sort
+.fill
+
+/////////////////////////////////////////////////
+/* ### A NEW ARRAY ###
+
+👉 Computed from original:
+
+.map - loop
+
+👉 Filtered using condition:
+
+.filter
+
+👉 Position to original:
+
+.slice
+
+👉 Adding original to other:
+
+.concat
+
+👉 Flattening the original:
+
+.flat
+.flatMap
+
+/////////////////////////////////////////////////
+/* ### AN ARRAY INDEX ###
+
+👉 Based on value:
+
+.indexOf
+
+👉 Based on test condition:
+
+.findIndex
+
+/////////////////////////////////////////////////
+/* ### AN ARRAY ELEMENT ###
+
+👉 Based on test condition:
+
+.find
+
+/////////////////////////////////////////////////
+/* ### KNOW IF ARRAY INCLUDES ###
+
+👉 Based on value:
+
+.includes
+
+👉 Based on test condition:
+
+.some
+.every
+
+/////////////////////////////////////////////////
+/* ### A NEW STRING ###
+
+👉 Based on separator string:
+
+.join
+
+/////////////////////////////////////////////////
+/* ### TO TRANSFORM TO VALUE ###
+
+👉 Based on accumulator:
+
+.reduce (Boil down array to single value of any type: number, string, boolean, or even new array or object)
+
+/////////////////////////////////////////////////
+/* ### TO JUST LOOP ARRAY ###
+
+👉 Based on callback:
+
+.forEach (Does not create a new array, just loops over it)
+
+*/
