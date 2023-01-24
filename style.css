@@ -295,3 +295,25 @@ h2 {
 .timer {
   font-weight: 600;
 }
+
+/* TOASTIFY */
+.toastify {
+  color: #444;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 48px;
+  padding: 12px 36px;
+}
+
+.toast-close {
+  margin-left: 4px;
+  color: #444;
+}
+
+.toast-success {
+  background: linear-gradient(to top left, #39b385, #9be15d);
+}
+
+.toast-error {
+  background: linear-gradient(to top left, #ffb003, #ffcb03);
+}

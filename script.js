@@ -137,6 +137,22 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const showNotification = function (toastMessage, toastStatus) {
+  Toastify({
+    text: toastMessage,
+    duration: 3000,
+    close: true,
+    gravity: 'top',
+    position: 'center',
+    offset: {
+      y: 20,
+    },
+    stopOnFocus: true,
+    className: `toast-${toastStatus}`,
+  }).showToast();
+};
+// show notifications
+
 const formatMovementDate = function (date, locale) {
   const calcDayPassed = (day1, day2) =>
     Math.round(Math.abs(day2 - day1) / (1000 * 60 * 60 * 24));
@@ -264,6 +280,9 @@ const startLogOutTimer = function () {
       clearInterval(timer);
       labelWelcome.textContent = 'Log in to get started';
       containerApp.style.opacity = 0;
+
+      // Show notification
+      showNotification('Automatically logged out.', 'error');
     }
 
     // Decrease 1s
@@ -344,6 +363,11 @@ btnLogin.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Show notification
+    showNotification('Successfully logged in.', 'success');
+  } else {
+    showNotification('Login failed, try again!', 'error');
   }
 });
 // login feature
@@ -378,9 +402,15 @@ btnTransfer.addEventListener('click', function (e) {
     // Update UI
     updateUI(currentAccount);
 
+    // Show notification
+    showNotification('Money transfer successful.', 'success');
+
     // Reset timer
     clearInterval(timer);
     timer = startLogOutTimer();
+  } else {
+    // Show notification
+    showNotification('Money transfer failed.', 'error');
   }
 });
 // transfer money feature
@@ -401,10 +431,16 @@ btnLoan.addEventListener('click', function (e) {
       // Update UI
       updateUI(currentAccount);
 
+      // Show notification
+      showNotification('Loan deposited successful.', 'success');
+
       // Reset timer
       clearInterval(timer);
       timer = startLogOutTimer();
     }, 2500);
+  } else {
+    // Show notification
+    showNotification('Loan request failed.', 'error');
   }
 
   inputLoanAmount.value = '';
@@ -427,6 +463,12 @@ btnClose.addEventListener('click', function (e) {
 
     // Update UI
     containerApp.style.opacity = 0;
+
+    // Show notification
+    showNotification('Account deleted successfully.', 'success');
+  } else {
+    // Show notification
+    showNotification('Account deletion failed.', 'error');
   }
 
   inputCloseUsername.value = inputClosePin.value = '';
