@@ -11,18 +11,23 @@
       rel="stylesheet"
     />
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+
     <title>Bankist</title>
   </head>
   <body>
     <!-- TOP NAVIGATION -->
     <nav>
       <p class="welcome">Log in to get started</p>
-      <img src="logo.png" alt="Logo" class="logo" />
+      <div class="logo"><img src="logo.png" alt="Logo" class="logo" /></div>
       <form class="login">
         <input
           type="text"
-          placeholder="user"
+          placeholder="User"
           class="login__input login__input--user"
         />
         <!-- In practice, use type="password" -->
@@ -35,6 +40,41 @@
         <button class="login__btn">&rarr;</button>
       </form>
     </nav>
+
+    <div class="app-info">
+      <div class="app-info__content">
+        <div class="app-info__text">
+          Bankist is a fictional and minimalistic online banking application and
+          this project is from Jonas Schmedtmann's complete javascript course.
+          <br />
+          <br />
+          I also added some features to the application, such as responsive
+          support and notification alerts. You can visit
+          <a href="https://github.com/tangoren/bankist-app" target="_blank"
+            >GitHub</a
+          >
+          for more detailed information.
+        </div>
+
+        <div class="app-info__list">
+          <div class="app-info__title">Example accounts:</div>
+          <div class="app-info__item">
+            <span class="title">Account #1:</span><span class="user">js</span
+            ><span class="pass">1111</span>
+          </div>
+
+          <div class="app-info__item">
+            <span class="title">Account #2:</span><span class="user">jd</span
+            ><span class="pass">2222</span>
+          </div>
+
+          <div class="app-info__item">
+            <span class="title">Account #3:</span><span class="user">ot</span
+            ><span class="pass">3333</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <main class="app">
       <!-- BALANCE -->
@@ -66,12 +106,18 @@
 
       <!-- SUMMARY -->
       <div class="summary">
-        <p class="summary__label">In</p>
-        <p class="summary__value summary__value--in">0000€</p>
-        <p class="summary__label">Out</p>
-        <p class="summary__value summary__value--out">0000€</p>
-        <p class="summary__label">Interest</p>
-        <p class="summary__value summary__value--interest">0000€</p>
+        <div class="summary-a">
+          <p class="summary__label">In</p>
+          <p class="summary__value summary__value--in">0000€</p>
+        </div>
+        <div class="summary-b">
+          <p class="summary__label">Out</p>
+          <p class="summary__value summary__value--out">0000€</p>
+        </div>
+        <div class="summary-c">
+          <p class="summary__label">Interest</p>
+          <p class="summary__value summary__value--interest">0000€</p>
+        </div>
         <button class="btn--sort">&downarrow; SORT</button>
       </div>
 
@@ -123,6 +169,9 @@
       &copy; by Jonas Schmedtmann. Don't claim as your own :)
     </footer> -->
 
+    <script src="
+    https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.js
+    "></script>
     <script src="script.js"></script>
   </body>
 </html>
