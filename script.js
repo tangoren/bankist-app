@@ -98,6 +98,8 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const containerAppInfo = document.querySelector('.app-info');
+
 /////////////////////////////////////////////////
 // Functions
 
@@ -105,7 +107,7 @@ const showNotification = function (toastMessage, toastStatus) {
   Toastify({
     text: toastMessage,
     duration: 3000,
-    close: true,
+    close: false,
     gravity: 'top',
     position: 'center',
     offset: {
@@ -235,6 +237,9 @@ const startLogOutTimer = function () {
       clearInterval(timer);
       labelWelcome.textContent = 'Log in to get started';
       containerApp.style.opacity = 0;
+      containerAppInfo.style.opacity = 0;
+      containerAppInfo.style.visibility = 'hidden';
+      containerAppInfo.style.height = 0;
 
       // Show notification
       showNotification('Automatically logged out.', 'error');
@@ -272,6 +277,9 @@ btnLogin.addEventListener('click', function (e) {
       .at(0)}!`;
 
     containerApp.style.opacity = 1;
+    containerAppInfo.style.opacity = 0;
+    containerAppInfo.style.visibility = 'hidden';
+    containerAppInfo.style.height = 0;
 
     const now = new Date();
     const options = {
@@ -341,7 +349,7 @@ btnTransfer.addEventListener('click', function (e) {
     updateUI(currentAccount);
 
     // Show notification
-    showNotification('Money transfer successful.', 'success');
+    showNotification('Money transfer complete.', 'success');
 
     // Reset timer
     clearInterval(timer);
@@ -359,6 +367,8 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    showNotification('Loan request received.', 'success');
+
     setTimeout(function () {
       // Add movement
       currentAccount.movements.push(amount);
@@ -370,7 +380,7 @@ btnLoan.addEventListener('click', function (e) {
       updateUI(currentAccount);
 
       // Show notification
-      showNotification('Loan deposited successful.', 'success');
+      showNotification('Loan deposited successfully.', 'success');
 
       // Reset timer
       clearInterval(timer);
@@ -401,6 +411,9 @@ btnClose.addEventListener('click', function (e) {
 
     // Update UI
     containerApp.style.opacity = 0;
+    containerAppInfo.style.opacity = 1;
+    containerAppInfo.style.visibility = 'visible';
+    containerAppInfo.style.height = 'auto';
 
     // Show notification
     showNotification('Account deleted successfully.', 'success');

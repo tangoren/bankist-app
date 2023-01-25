@@ -87,7 +87,7 @@ nav {
 .app {
   position: relative;
   max-width: 100rem;
-  margin: 4rem auto;
+  margin: 0 auto 4rem;
   display: grid;
   grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
@@ -316,4 +316,149 @@ h2 {
 
 .toast-error {
   background: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+
+.app-info {
+  padding: 2rem;
+  max-width: 720px;
+  background: #e7e7e7;
+  border-color: #f5f5f5;
+  margin: 36px auto 0;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  transition: all 0.3s;
+}
+
+.app-info__text a {
+  background: linear-gradient(to top left, #39b385, #9be15d);
+  color: #444;
+  padding: 0 4px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.app-info__list {
+  margin-top: 24px;
+}
+
+.app-info__title {
+  font-weight: 700;
+}
+
+.app-info__item {
+  margin-top: 12px;
+}
+
+.app-info__item span {
+  margin-right: 16px;
+  display: inline-block;
+  user-select: all;
+}
+
+.app-info__item .title {
+  width: 100px;
+  opacity: 0.75;
+}
+
+.app-info__item .user {
+  width: 30px;
+}
+
+@media (max-width: 992px) {
+  .app {
+    padding-bottom: 64px;
+    display: block;
+  }
+
+  nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  nav p {
+    order: 2;
+    margin-top: 12px;
+  }
+
+  nav .logo {
+    order: 1;
+    flex-basis: 100%;
+  }
+
+  nav form {
+    order: 3;
+    margin-top: 24px;
+  }
+
+  .welcome {
+    font-size: 1.4rem;
+  }
+
+  .balance__label {
+    font-size: 1.4rem;
+  }
+
+  .balance__date {
+    font-size: 1.2rem;
+    margin-top: 4px;
+  }
+
+  .balance__value {
+    font-size: 3rem;
+  }
+
+  .movements__row {
+    padding: 2rem;
+  }
+
+  .movements__type {
+    font-size: 0.9rem;
+    padding: 0.2rem 1rem 0.1rem;
+    margin-right: 1rem;
+  }
+
+  .movements__date {
+    font-size: 0.9rem;
+  }
+
+  .movements__value {
+    font-size: 1.6rem;
+  }
+
+  .summary {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .summary-a,
+  .summary-b,
+  .summary-c {
+    flex-basis: 100%;
+    margin-top: 1.2rem;
+  }
+
+  .summary__label,
+  .summary__value {
+    margin: 0;
+  }
+
+  .summary button {
+    flex-basis: 100%;
+    margin: 1.2rem;
+    font-size: 2rem;
+    order: -1;
+  }
+
+  .operation {
+    padding: 2rem 3rem;
+    margin-top: 2rem;
+  }
+
+  .logout-timer {
+    text-align: center;
+    margin: 20px 0 0;
+  }
 }
